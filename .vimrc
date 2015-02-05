@@ -29,9 +29,11 @@ Plugin 'gmarik/Vundle.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Syntastic'
 Bundle 'bling/vim-airline'
-Bundle 'mhinz/vim-signify'
-Bundle 'https://github.com/tpope/vim-fugitive'
+"Bundle 'mhinz/vim-signify'
+"Bundle 'https://github.com/tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'cakebaker/scss-syntax.vim'
+Bundle 'Yggdroot/indentLine'
 " TODO: any additional plugins go here
 
 if iCanHazVundle == 0
@@ -62,6 +64,40 @@ let g:airline_powerline_fonts = 1
 " Disable hunks, whatever they are, as they seem to be causing problems
 let g:airline_enable_hunks = 0
 
+" Fancy pants status line
+set laststatus=2
+
+set statusline=%F                              " tail of the filename
+set statusline+=\                              " whitespace
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},  " file encoding
+set statusline+=%{&ff}]                        " file format
+set statusline+=%h                             " help file flag
+set statusline+=%m                             " modified flag
+set statusline+=%r                             " read only flag
+set statusline+=%y                             " filetype
+set statusline+=%w                             " filetype
+if exists('g:loaded_fugitive')
+  set statusline+=%{fugitive#statusline()}
+endif
+set statusline+=%=                             " left/right separator
+set statusline+=\ %#warningmsg#                " start warnings highlight group
+set statusline+=%*                             " end highlight group
+set statusline+=%c,                            " cursor column
+set statusline+=%l/%L                          " cursor line/total lines
+set statusline+=\ %P                           " percent through file
+
+" Solarized (Color scheme)
+" ------------------------
+
+" Color scheme
+colorscheme solarized
+
+" Set 256 color terminal (else colors may be very off)
+set t_Co=256
+
+" can be switched to "light" when appropriate.
+set background=dark
+
 "
 " Other VIM settings
 " ==================
@@ -83,6 +119,7 @@ set ruler
 
 " Enable mouse input
 set mouse=a
+set mousemodel=popup
 set selectmode=mouse
 
 " Do not use swap files (rely on version control instead)
@@ -111,13 +148,12 @@ set textwidth=80
 set wrap
 set linebreak
 
+" Wild menu
+set wildmenu
+set wildmode=list:longest,list:full
+
 " Line endings
 set ffs=unix
-
-" Color scheme
-colorscheme solarized
-set t_Co=256
-set background=dark
 
 " Spell checker
 set spell
@@ -152,27 +188,12 @@ set mat=2
 " Two spaces after a period
 set joinspaces
 
-" Fancy pants status line
-set laststatus=2
-
-set statusline=%F                              " tail of the filename
-set statusline+=\                              " whitespace
-set statusline+=[%{strlen(&fenc)?&fenc:'none'},  " file encoding
-set statusline+=%{&ff}]                        " file format
-set statusline+=%h                             " help file flag
-set statusline+=%m                             " modified flag
-set statusline+=%r                             " read only flag
-set statusline+=%y                             " filetype
-set statusline+=%w                             " filetype
-if exists('g:loaded_fugitive')
-  set statusline+=%{fugitive#statusline()}
-endif
-set statusline+=%=                             " left/right separator
-set statusline+=\ %#warningmsg#                " start warnings highlight group
-set statusline+=%*                             " end highlight group
-set statusline+=%c,                            " cursor column
-set statusline+=%l/%L                          " cursor line/total lines
-set statusline+=\ %P                           " percent through file
+" Figure out relative paths (relative to the current file)
+"if exists('+autochdir')
+"    set autochdir
+"else
+"    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+"endif
 
 " Re-read the vimrc file when editing the vimrc file
 au BufLeave $MYVIMRC :source $MYVIMRC
@@ -196,4 +217,3 @@ autocmd BufWritePre     * :call StripTrailingWhitespace()
 
 " Show characters past 80th column as errors
 match ErrorMsg '\%>80v.\+'
-
