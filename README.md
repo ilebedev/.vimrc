@@ -226,7 +226,7 @@ Command in `.vimrc` | What the command does
 `set list` | display whitespace visually
 `set listchars=tab:>.,extends:⤾,precedes:⤿,nbsp:.` | Display tabs as ">..." for tabwidth 4
 
-Line width and wrapping at 80 characters
+Line width and wrapping at terminal boundaries; warn when lines are longer than 80 characters
 
 Command in `.vimrc` | What the command does
 ------------- | -------------
