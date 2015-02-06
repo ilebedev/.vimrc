@@ -174,3 +174,10 @@ cnoremap <C-A> <C-C>gggH<C-O>G
 onoremap <C-A> <C-C>gggH<C-O>G
 snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
+
+" Ctrl-Z, Ctrl-Y : Undo, Redo.
+" These may be wonky in some terminals
+noremap <C-Z> u
+inoremap <C-Z> <C-O>u
+noremap <C-Y> <C-R>
+inoremap <C-Y> <C-O><C-R>
