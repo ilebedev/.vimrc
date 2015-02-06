@@ -41,9 +41,9 @@ endif
 
 " Solarized color scheme
 " ----------------------
-set t_Co=256 " Set 256 color terminal (else colors may be very off)
 colorscheme solarized
 set background=dark
+let g:solarized_visibility = "low"
 
 " Syntastic
 " ---------
@@ -73,7 +73,7 @@ set laststatus=2
 
 " IndentLine
 " ----------
-let g:indentLine_char = '︙'
+let g:indentLine_char = '⦙'
 
 " Native Vim Settings
 " ===================
