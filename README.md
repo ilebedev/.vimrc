@@ -1,7 +1,7 @@
 .vimrc
 ======
 
-This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine (with the exception of the CompleteMe plugin, which requires a compiled component). My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tnux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` and `bash` configuration files also.
+This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine (with the exception of the CompleteMe plugin, which requires a compiled component). My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tmux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` and `bash` configuration files also.
 
 This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
 
@@ -77,8 +77,8 @@ Bundle 'altercation/vim-colors-solarized'
 ```
 
 If you use Vim in a GUI, you can skip this step.
-If, however, you use Vim in a terminal (I do!), you need to consider how your terminal interperts colors.
-This gets very complicated indeed when multiple nested terminals try doing conflicting clever things with your colors (Vim in bash in TMUX, for example). Make sure your termina's 16-color pallete matches the Solarized colors, these are what Vim will be using to display things. Your favorite terminal may have a preset available for download [here](https://github.com/altercation/solarized), but mine (Gnome Terminal) did not. I set my terminal colors to manually (the values are [here](http://ethanschoonover.com/solarized/vim-colors-solarized#the-values), and the [.Xresources file](https://github.com/altercation/solarized/blob/master/xresources/solarized) is particularly helpful when copy&pasting color values into your terminal's config GUI.).
+If, however, you use Vim in a terminal (I do!), you need to consider how your terminal interprets colors.
+This gets very complicated indeed when multiple nested terminals try doing conflicting clever things with your colors (Vim in bash in TMUX, for example). Make sure your termina's 16-color palette matches the Solarized colors, these are what Vim will be using to display things. Your favorite terminal may have a preset available for download [here](https://github.com/altercation/solarized), but mine (Gnome Terminal) did not. I set my terminal colors to manually (the values are [here](http://ethanschoonover.com/solarized/vim-colors-solarized#the-values), and the [.Xresources file](https://github.com/altercation/solarized/blob/master/xresources/solarized) is particularly helpful when copy&pasting color values into your terminal's config GUI.).
 
 Finally, select the new color scheme, and ask for low-contrast formatting characters (like indent lines):
 ```
@@ -214,16 +214,16 @@ Command in `.vimrc` | What the command does
 `set mousemodel=popup_setpos` | Allows the terminal to pop up a menu on rightclick. See [here](http://vimdoc.sourceforge.net/htmldoc/options.html#'mousemodel').
 `set selectmode=mouse` | enable mouse input! This does many nice things, like allowing you to click around to move the cursor.
 
-Idnentation makes code cleaner. I use spaces instead of tabs, and use 2 spaces per tab for compact-looking code.
+Indentation makes code cleaner. I use spaces instead of tabs, and use 2 spaces per tab for compact-looking code.
 
 Command in `.vimrc` | What the command does
 ------------- | -------------
 `set autoindent` | Attempt to ident automatically.
-`set paste` | Fix identation of code pasted into Vim.
+`set paste` | Fix indentation of code pasted into Vim.
 `set expandtab` | Replace tabs with spaces.
 `set shiftwidth=2` | Tabs are 2 spaces.
 `set tabstop=2` | Tabs are aligned to 2-space intervals.
-`filetype plugin indent on` | Use filetypes for identation. Also used for highlighting, etc.
+`filetype plugin indent on` | Use filetypes for indentation. Also used for highlighting, etc.
 `set smarttab` | Try to be [smart](http://vim.wikia.com/wiki/Indent_with_tabs,_align_with_spaces) about tabulation. 
 `set list` | display whitespace visually
 `set listchars=tab:>.,extends:⤾,precedes:⤿,nbsp:.` | Display tabs as ">..." for tabwidth 4
@@ -310,7 +310,7 @@ snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
 ```
 
-Ctrl-Z, Ctrl-Y : Undo, Redo. Accidental use of Ctrl-Z if it isn't remapped is very dangerous (insta-quit!), and not uncommon if you mapoed Ctrl-C/X/V to clipboard operations.
+Ctrl-Z, Ctrl-Y : Undo, Redo. Accidental use of Ctrl-Z if it isn't remapped is very dangerous (insta-quit!), and not uncommon if you mapped Ctrl-C/X/V to clipboard operations.
 These may or may not be a little wonky in some terminals.
 ```
 noremap <C-Z> u
