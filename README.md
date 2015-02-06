@@ -192,7 +192,7 @@ Command in `.vimrc` | What the command does
 `set ffs=unix` | UNIX line endings (\n).
 `set spell` | Spell checker.
 `set lazyredraw` | Don't redraw while executing macros for performance.
-`set backspace=eos,start,indent` | Make backspace act as backspace should.
+`set backspace=eol,start,indent` | Make backspace act as backspace should.
 `set magic` | Turn [magic](http://vimdoc.sourceforge.net/htmldoc/pattern.html#/magic) regular expressions on.
 `set joinspaces` | Put two spaces after periods.
 `syntax on` | Turn on syntax highlighting.
@@ -259,7 +259,7 @@ Wild menu helps complete commands, find files based on wildcards, etc. It's fant
 
 ```
 set wildmenu
-set wildmenu=list:longest,list:full
+set wildmenu=longest:full,full
 ```
 
 Rely on version control, so avoid creating swap files
