@@ -5,7 +5,7 @@ This is the `.vimrc` file I use across all my machines. The file conveniently **
 
 This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
 
-This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmux.conf)
+This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmux.conf). Make sure your `.bashrc` sets your terminal variable: `export TERM=screen-256color-bce`. You will have many issues with color in TMUX without this.
 
 ![Alt text](http://full/path/to/img.jpg "Screenshot")
 
@@ -76,12 +76,15 @@ I use Ethan Schoonover's excellent [Solarized](http://ethanschoonover.com/solari
 Bundle 'altercation/vim-colors-solarized'
 ```
 
-Now, to actually use this color scheme, we need to ensure 256-color output is enabled, and select the `solarized` color scheme:
+If you use Vim in a GUI, you can skip this step.
+If, however, you use Vim in a terminal (I do!), you need to consider how your terminal interperts colors.
+This gets very complicated indeed when multiple nested terminals try doing conflicting clever things with your colors (Vim in bash in TMUX, for example). Make sure your termina's 16-color pallete matches the Solarized colors, these are what Vim will be using to display things. Your favorite terminal may have a preset available for download [here](https://github.com/altercation/solarized), but mine (Gnome Terminal) did not. I set my terminal colors to manually (the values are [here](http://ethanschoonover.com/solarized/vim-colors-solarized#the-values), and the [.Xresources file](https://github.com/altercation/solarized/blob/master/xresources/solarized) is particularly helpful when copy&pasting color values into your terminal's config GUI.).
 
+Finally, select the new color scheme, and ask for low-contrast formatting characters (like indent lines):
 ```
-set t_Co=256 " Set 256 color terminal (else colors may be very off)
 colorscheme solarized
 set background=dark
+let g:solarized_visibility = "low"
 ```
 
 To use the light `solarized` scheme, replce the last command with `set background=light`. This can also be done by typing the command in the editor, and is very useful when working in various lighting conditions.
