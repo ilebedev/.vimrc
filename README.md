@@ -89,8 +89,7 @@ let g:solarized_visibility = "low"
 
 To use the light `solarized` scheme, replce the last command with `set background=light`. This can also be done by typing the command in the editor, and is very useful when working in various lighting conditions.
 
-**NOTE:** The plugin relies on your terminal having appropriate color support. I add my .bashrc file 
-It is worth noting that I set up my terminal emulator to use the `solarized` color scheme as well (see instructions on the [Solarized web site](http://ethanschoonover.com/solarized)).
+**NOTE:** The plugin relies on your terminal having appropriate color support, unless you are running the GUI variant of Vim. Set your termina's 16-color palete to use Solarized colors, as described above. If you intend to use TMUX, make sure your `.bashrc` exports a TMUX-friendly TERM variable: `export TERM=screen-256color-bce`.
 
 ##Syntastic
 -----------
@@ -150,7 +149,7 @@ Val Markovic's [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) fuzzy-
 Plugin 'Valloric/YouCompleteMe'
 ```
 
-We aren't done here yet! Follow the steps [here](https://github.com/Valloric/YouCompleteMe#installation) to satisfy the prerequisites and run the installation script.
+We aren't done here yet! Follow the steps [here](https://github.com/Valloric/YouCompleteMe#installation) to satisfy the prerequisites and run the installation script. TLDR: `cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer` and wait a few minutes.
 
 ##SCSS Syntax
 -------------
