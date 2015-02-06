@@ -3,6 +3,9 @@
 
 This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine (with the exception of the CompleteMe plugin, which requires a compiled component). My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tnux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` and `bash` configuration files also.
 
+This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
+This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmux.conf)
+
 ![Alt text](http://full/path/to/img.jpg "Screenshot")
 
 #Auto-downloading of plugins
