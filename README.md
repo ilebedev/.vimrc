@@ -7,7 +7,7 @@ This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
 
 This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmux.conf). Make sure your `.bashrc` sets your terminal variable: `export TERM=screen-256color-bce`. You will have many issues with color in TMUX without this.
 
-![Alt text](http://full/path/to/img.jpg "Screenshot")
+![Alt text](screenshots/vim.png "Screenshot")
 
 #Auto-downloading of plugins
 ===========================
