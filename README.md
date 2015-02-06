@@ -216,7 +216,7 @@ Idnentation makes code cleaner. I use spaces instead of tabs, and use 2 spaces p
 
 Command in `.vimrc` | What the command does
 ------------- | -------------
-`set autoidndent` | Attempt to ident automatically.
+`set autoindent` | Attempt to ident automatically.
 `set paste` | Fix identation of code pasted into Vim.
 `set expandtab` | Replace tabs with spaces.
 `set shiftwidth=2` | Tabs are 2 spaces.
