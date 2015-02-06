@@ -1,204 +1,124 @@
-"
-" Vim Plugins
-" ===========
-"
-
-" Vundle (Plugin manager)
+" Auto-downloading of plugins
+" ===========================
 set nocompatible
 filetype off
 
-" Automagically install Vundle and all bundles/plugins
-let iCanHazVundle=1
+" Download Vundle if it isn't available
+let isVundleAvailable=0
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  let iCanHazVundle=0
+  let isVundleAvailable=1
 endif
 
-" set the runtime path to include Vundle and initialize
+" Initialize Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin()
 call vundle#rc()
 Plugin 'gmarik/Vundle.vim'
 
-" PLUGINS:
-" Additional plugins below
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'Syntastic'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
-"Bundle 'mhinz/vim-signify'
-"Bundle 'https://github.com/tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'cakebaker/scss-syntax.vim'
 Bundle 'Yggdroot/indentLine'
-" TODO: any additional plugins go here
 
-if iCanHazVundle == 0
-  echo "Installing Bundles, please ignore key map error messages"
-  echo ""
+" TODO: Plugins go here
+
+if isVundleAvailable == 1
+  echo "Installing Bundles and Plugins"
+  echo "------------------------------"
   :BundleInstall
 endif
 
-filetype plugin indent on
 
-"
-" Plugin Configuration
-" ====================
-"
+" Vim Plugins
+" ============
 
-" Airline ( fancy status line )
-" -----------------------------
-
-" Enable list of buffers
-let g:airline#extensions#tabline#enabled = 1
-
-" Show filename only
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-" Nice-looking Powerline fonts
-let g:airline_powerline_fonts = 1
-
-" Disable hunks, whatever they are, as they seem to be causing problems
-let g:airline_enable_hunks = 0
-
-" Fancy pants status line
-set laststatus=2
-
-set statusline=%F                              " tail of the filename
-set statusline+=\                              " whitespace
-set statusline+=[%{strlen(&fenc)?&fenc:'none'},  " file encoding
-set statusline+=%{&ff}]                        " file format
-set statusline+=%h                             " help file flag
-set statusline+=%m                             " modified flag
-set statusline+=%r                             " read only flag
-set statusline+=%y                             " filetype
-set statusline+=%w                             " filetype
-if exists('g:loaded_fugitive')
-  set statusline+=%{fugitive#statusline()}
-endif
-set statusline+=%=                             " left/right separator
-set statusline+=\ %#warningmsg#                " start warnings highlight group
-set statusline+=%*                             " end highlight group
-set statusline+=%c,                            " cursor column
-set statusline+=%l/%L                          " cursor line/total lines
-set statusline+=\ %P                           " percent through file
-
-" Solarized (Color scheme)
-" ------------------------
-
-" Color scheme
+" Solarized color scheme
+" ----------------------
+set t_Co=256 " Set 256 color terminal (else colors may be very off)
 colorscheme solarized
-
-" Set 256 color terminal (else colors may be very off)
-set t_Co=256
-
-" can be switched to "light" when appropriate.
 set background=dark
 
-"
-" Other VIM settings
-" ==================
-"
+" Syntastic
+" ---------
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_quiet_messages = { "type": "style" }
+let g:syntastic_error_symbol = "⚠"
+let g:syntastic_warning_symbol = ">"
 
-" utf8 default encoding
+" Vim-Airline
+" -----------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 1
+"let g:airline_enable_hunks = 0
+set laststatus=2
+
+" YouCompleteMe
+" -------------
+" No configuration!
+
+" SCSS Syntax
+" -----------
+" No configuration!
+
+" IndentLine
+" ----------
+let g:indentLine_char = '︙'
+
+" Native Vim Settings
+" ===================
+
+" This and that
 set encoding=utf8
-
-" Send more characters for fast redraw
 set ttyfast
+set number
+set ruler
+set ffs=unix
+set spell
+set lazyredraw
+set backspace=eol,start,indent
+set magic
+set joinspaces
+syntax on
 
-" Levels of history
+" History
 set history=1000
 set undolevels=1000
 
-" Line numbers
-set number
-set ruler
-
-" Enable mouse input
+" Mouse interaction
 set mouse=a
-set mousemodel=popup
+set mousemodel=popup_setpos
 set selectmode=mouse
 
-" Do not use swap files (rely on version control instead)
-set nobackup
-set noswapfile
-
-" Auto-update buffer when file is changed externally
-" NOTE: this is a little fucky
-set autoread
-
-" Syntax highlighting
-syntax on
-
-" Indentation
+" Idnentation
 set autoindent
-set paste " fix autoindent of pasted text
-set expandtab " turn tabs to spaces
-set shiftwidth=2 " tabs are 2 spaces
+set paste
+set expandtab
+set shiftwidth=2
 set tabstop=2
+filetype plugin indent on
 set smarttab
-set list " show tab characters, visual whitespace
-set listchars=tab:>.
+set list
+set listchars=tab:>.,extends:⤾,precedes:⤿,nbsp:.
 
-" Line width
-set textwidth=80
+" Line width and wrapping
 set wrap
+set textwidth=0
+set wrapmargin=0
 set linebreak
+match ErrorMsg '\%>80v.\+'
 
-" Wild menu
-set wildmenu
-set wildmode=list:longest,list:full
-
-" Line endings
-set ffs=unix
-
-" Spell checker
-set spell
-
-" Make backspace act normal
-set backspace=eol,start,indent
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" Two spaces after a period
-set joinspaces
-
-" Figure out relative paths (relative to the current file)
-"if exists('+autochdir')
-"    set autochdir
-"else
-"    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-"endif
-
-" Re-read the vimrc file when editing the vimrc file
-au BufLeave $MYVIMRC :source $MYVIMRC
-
-" Remove trailing whitespace on save
+" Strip trailing space whenever buffer is saved
 if !exists("*StripTrailingWhitespace")
   function StripTrailingWhitespace()
     if !&binary && &filetype != 'diff'
@@ -215,5 +135,42 @@ autocmd FileAppendPre   * :call StripTrailingWhitespace()
 autocmd FilterWritePre  * :call StripTrailingWhitespace()
 autocmd BufWritePre     * :call StripTrailingWhitespace()
 
-" Show characters past 80th column as errors
-match ErrorMsg '\%>80v.\+'
+" Wild menu
+set wildmenu
+set wildmode=longest:list,full
+
+" Omit swap files
+set nobackup
+set noswapfile
+
+" Search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+" Matching ([{ }])
+set showmatch
+set mat=2
+
+" Keyboard Shortcuts
+" ------------------
+
+" Ctrl-C, Ctrl-X, Ctrl-V : Copy, Cut, Paste
+vnoremap <C-X> "+x
+vnoremap <C-C> "+y
+map <C-V> "+gP
+cmap <C-V> <C-R>+
+exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
+" Use CTRL-Q to do what CTRL-V used to do;
+noremap <C-Q> <C-V>
+
+" Ctrl-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
