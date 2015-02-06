@@ -259,7 +259,7 @@ Wild menu helps complete commands, find files based on wildcards, etc. It's fant
 
 ```
 set wildmenu
-set wildmenu=longest:full,full
+set wildmode=longest:list,full
 ```
 
 Rely on version control, so avoid creating swap files
