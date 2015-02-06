@@ -20,14 +20,14 @@ filetype off
 Now onto the meat of the problem: at launch, Vim checks if the vile `~/.vim/bundle/Vundle.vim/README.md` exists, and if not, installs `Vundle` from its github repository:
 
 ```
-let iCanHazVundle=1
+let isVundleAvailable=0
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  let iCanHazVundle=0
+  let isVundleAvailable=1
 endif
 ```
 
@@ -45,9 +45,9 @@ Plugin 'gmarik/Vundle.vim'
 Finally, we give a set of bundles and plugins to be installed, and load them:
 
 ```
-if iCanHazVundle == 0
+if isVundleAvailable == 1
   echo "Installing Bundles and Plugins"
-  echo ""
+  echo "------------------------------"
   :BundleInstall
 endif
 ```
