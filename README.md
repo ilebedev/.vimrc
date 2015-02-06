@@ -285,7 +285,7 @@ set mat=2
 ##Keyboard Shortcuts
 --------------------
 
-Add some key mappings to make copy and selection shortcuts more accessible
+Add some key mappings to make copy and selection shortcuts more in line with other editors to avoid shortcut pains when switching back and forth.
 
 ```
 vnoremap <C-X> "+x
@@ -306,4 +306,13 @@ cnoremap <C-A> <C-C>gggH<C-O>G
 onoremap <C-A> <C-C>gggH<C-O>G
 snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
+```
+
+Ctrl-Z, Ctrl-Y : Undo, Redo. Accidental use of Ctrl-Z if it isn't remapped is very dangerous (insta-quit!), and not uncommon if you mapoed Ctrl-C/X/V to clipboard operations.
+These may or may not be a little wonky in some terminals.
+```
+noremap <C-Z> u
+inoremap <C-Z> <C-O>u
+noremap <C-Y> <C-R>
+inoremap <C-Y> <C-O><C-R>
 ```
