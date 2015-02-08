@@ -151,16 +151,21 @@ Plugin 'Valloric/YouCompleteMe'
 
 We aren't done here yet! Follow the steps [here](https://github.com/Valloric/YouCompleteMe#installation) to satisfy the prerequisites and run the installation script. TLDR: `cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer` and wait a few minutes.
 
-##SCSS Syntax
+##Language-Specific Plugins
 -------------
 
 ![Alt text](http://full/path/to/img.jpg "Screenshot")
 
-To improve on Vim's handling of Sassy CSS, I use Daniel Hofstetter's [scss-syntax](https://github.com/cakebaker/scss-syntax.vim) plugin. There is no configuration. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
+To improve on Vim's handling of languages I use that it does not handle well out of the box, I use additional plugins.
 
-```
-Plugin 'cakebaker/scss-syntax.vim'
-```
+To install the plugins, add the relevant commands below to the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
+
+Language | Command | Configuration
+---------|---------|--------------
+SCSS (Sassy CSS) | [`Plugin 'cakebaker/scss-syntax.vim'`](https://github.com/cakebaker/scss-syntax.vim) | (none)
+Go | [`Plugin 'fatih/vim-go'`](https://github.com/fatih/vim-go) | (none)
+
+
 
 ##IndentLine
 ------------
