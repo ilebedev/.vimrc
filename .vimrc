@@ -25,6 +25,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'fatih/vim-go'
 Bundle 'Yggdroot/indentLine'
 
 " TODO: Plugins go here
