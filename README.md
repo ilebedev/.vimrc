@@ -5,7 +5,7 @@ This is the `.vimrc` file I use across all my machines. The file conveniently **
 
 This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
 
-This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmux.conf). Make sure your `.bashrc` sets your terminal variable: `export TERM=screen-256color-bce`. You will have many issues with color in TMUX without this.
+This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmux.conf). Make sure your TMUX environment shows `$TERM` as set to `screen-256color-bce`. You will have many issues with color in TMUX without this.
 
 ![Alt text](screenshots/vim.png "Screenshot")
 
