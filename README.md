@@ -89,7 +89,7 @@ let g:solarized_visibility = "low"
 
 To use the light `solarized` scheme, replce the last command with `set background=light`. This can also be done by typing the command in the editor, and is very useful when working in various lighting conditions.
 
-**NOTE:** The plugin relies on your terminal having appropriate color support, unless you are running the GUI variant of Vim. Set your termina's 16-color palete to use Solarized colors, as described above. If you intend to use TMUX, make sure your `.bashrc` exports a TMUX-friendly TERM variable: `export TERM=screen-256color-bce`.
+**NOTE:** The plugin relies on your terminal having appropriate color support, unless you are running the GUI variant of Vim. Set your termina's 16-color palete to use Solarized colors, as described above.
 
 ##Syntastic
 -----------
