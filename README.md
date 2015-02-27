@@ -56,10 +56,6 @@ if isVundleAvailable == 1
 endif
 ```
 
-Here is a screenshot of Vim loading plugins at startup. Nifty!
-
-![Alt text](http://full/path/to/img.jpg "Screenshot")
-
 #Vim Plugins
 ============
 
@@ -67,8 +63,6 @@ I set plugin settings first to make sure that any Vim settings I change later ar
 
 ##Solarized color scheme
 ------------------------
-
-![Alt text](http://full/path/to/img.jpg "Screenshot")
 
 I use Ethan Schoonover's excellent [Solarized](http://ethanschoonover.com/solarized) color scheme, which provides good contrast and accessible colors for both dark and light backgrounds, uses a sensible color pallete, is easy on the eyes, and works with both light and heavy fonts. To load the [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
@@ -94,8 +88,6 @@ To use the light `solarized` scheme, replce the last command with `set backgroun
 ##Syntastic
 -----------
 
-![Alt text](http://full/path/to/img.jpg "Screenshot")
-
 The [Syntastic](https://github.com/scrooloose/syntastic) plugin uses native syntax checkers (`lint`-like tooks) to give syntax error indicators for a large number of languages. This plugin requires some features not present in all installations of Vim, but Vim version 7 or later with the "normal", "big", or "huge" feature set should not have any problems. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
@@ -117,8 +109,6 @@ Command in `.vimrc` | What the command does
 ##Vim-Airline
 -------------
 
-![Alt text](http://full/path/to/img.jpg "Screenshot")
-
 [Airline](https://github.com/bling/vim-airline) is a cute plugin that helps maintain a neat (and somwhat flashy) status line. Unfortunatley, Airline relies on some special glyphs from the [Powerline](https://github.com/powerline/powerline) project for its good looks, and may require system fonts be [patched](https://powerline.readthedocs.org/en/master/installation.html#patched-fonts). Many pre-patched fonts can be found [here](https://github.com/powerline/fonts). I personally use 13 point `Ubuntu Mono derivative Powerline` font.
 
 To install Airline, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
@@ -139,8 +129,6 @@ Command in `.vimrc` | What the command does
 ##YouCompleteMe
 ---------------
 
-![Alt text](http://full/path/to/img.jpg "Screenshot")
-
 **Note:** Although there isn't any configuration needed to make this plugin shine, installing it involves compiling things. When using Vim over SSH on less-than-capable machines, it makes sense to skip installing this plugin.
 
 Val Markovic's [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) fuzzy-search code completion engine aggregades data from several auto-completion to be an all-around helpful addition to Vim. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
@@ -153,8 +141,6 @@ We aren't done here yet! Follow the steps [here](https://github.com/Valloric/You
 
 ##Language-Specific Plugins
 -------------
-
-![Alt text](http://full/path/to/img.jpg "Screenshot")
 
 To improve on Vim's handling of languages I use that it does not handle well out of the box, I use additional plugins.
 
@@ -169,8 +155,6 @@ Go | [`Plugin 'fatih/vim-go'`](https://github.com/fatih/vim-go) | (none)
 
 ##IndentLine
 ------------
-
-![Alt text](http://full/path/to/img.jpg "Screenshot")
 
 One feature Vim surprisingly does not build in is indent indicators. These offer visual cues to match indent levels in code, and are common in GUI editors. Yggdroot's [IndentLine](https://github.com/Yggdroot/indentLine) does exactly what it's supposed to - replace whitespace at ident intervals with a configurable character. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
