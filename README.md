@@ -1,7 +1,7 @@
 .vimrc
 ======
 
-This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine (with the exception of the CompleteMe plugin, which requires a compiled component). My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tmux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` and `bash` configuration files also.
+This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine. My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tmux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` configuration file also.
 
 This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
 
@@ -12,7 +12,7 @@ This is my [.tmux.conf file](https://github.com/ilebedev/.vimrc/blob/master/.tmu
 #Auto-downloading of plugins
 ===========================
 
-Installing a plugin manager manually is exactly as inconvenient as installing plugins, so I automate the process by using what is essentially [Erik Zaadi's script] (http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/) to auto-install the [`Vundle`](https://github.com/gmarik/Vundle.vim) plugin manager if it appears to not already be installed.
+Installing a plugin manager manually is exactly as inconvenient as installing plugins, so I automate the process by adding a piece of script that will download and initialize the [`NeoBundle`](https://github.com/Shougo/neobundle.vim) plugin manager if it appears to not already be installed.
 
 First, the prerequisites for our plugin manager:
 
@@ -21,38 +21,47 @@ set nocompatible
 filetype off
 ```
 
-Now onto the meat of the problem: at launch, Vim checks if the vile `~/.vim/bundle/Vundle.vim/README.md` exists, and if not, installs `Vundle` from its github repository:
+Now onto the meat of the problem: at launch, Vim checks if the vile `~/.vim/bundle/NeoBundle.lock` exists, and if not, installs `NeoBundle` from its github repository:
 
 ```
-let isVundleAvailable=0
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle.."
+let isNeoBundleAvailable=0
+let neobundle_indicator=expand('~/.vim/bundle/NeoBundle.lock')
+if !filereadable(neobundle_indicator)
+  echo "Installing NeoBundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  let isVundleAvailable=1
+  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+  let isNeoBundleAvailable=1
 endif
 ```
 
-After this is all done, we can safely assume that `Vundle` is installed (as long as the check for `vundle_readme` above is not fooled). We can now initialize it:
+After this is all done, we assume that `NeoBundle` is installed. We can now initialize it:
 
 ```
-set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-call vundle#rc()
-Plugin 'gmarik/Vundle.vim'
+set runtimepath+=~/.vim/bundle/neobundle.vim
+call neobundle#begin(expand('~/.vim/bundle/'))
 
+NeoBundleFetch 'Shougo/neobundle.vim'
+```
+
+Finally, we give a set of bundles and plugins:
+
+```
 " TODO: Plugins go here
 ```
 
-Finally, we give a set of bundles and plugins to be installed, and load them:
+And the plugins specified above are installed/loaded:
 
 ```
-if isVundleAvailable == 1
+if isNeoBundleAvailable == 1
   echo "Installing Bundles and Plugins"
-  echo "------------------------------"
-  :BundleInstall
+ echo "! FIRST TIME WILL TAKE A WHILE"
+ echo "------------------------------"
+ NeoBundleInstall
+ endif
+ 
+ " See if anything has been changed since Vim was last run
+ NeoBundleCheck
 endif
 ```
 
@@ -67,7 +76,7 @@ I set plugin settings first to make sure that any Vim settings I change later ar
 I use Ethan Schoonover's excellent [Solarized](http://ethanschoonover.com/solarized) color scheme, which provides good contrast and accessible colors for both dark and light backgrounds, uses a sensible color pallete, is easy on the eyes, and works with both light and heavy fonts. To load the [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-Bundle 'altercation/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 ```
 
 If you use Vim in a GUI, you can skip this step.
@@ -91,7 +100,7 @@ To use the light `solarized` scheme, replce the last command with `set backgroun
 The [Syntastic](https://github.com/scrooloose/syntastic) plugin uses native syntax checkers (`lint`-like tooks) to give syntax error indicators for a large number of languages. This plugin requires some features not present in all installations of Vim, but Vim version 7 or later with the "normal", "big", or "huge" feature set should not have any problems. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-Bundle 'Syntastic'
+NeoBundle 'Syntastic'
 ```
 
 I customize the plugin somewhat: I do not use the location list (list of all errors and warnings in the file), and change the characters used to tag suspicious lines in your code:
@@ -114,7 +123,7 @@ Command in `.vimrc` | What the command does
 To install Airline, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-Bundle 'bling/vim-airline'
+NeoBundle 'bling/vim-airline'
 ```
 
 Configure Airline (See [here](https://github.com/bling/vim-airline/blob/master/doc/airline.txt) for more config commands):
@@ -129,15 +138,38 @@ Command in `.vimrc` | What the command does
 ##YouCompleteMe
 ---------------
 
-**Note:** Although there isn't any configuration needed to make this plugin shine, installing it involves compiling things. When using Vim over SSH on less-than-capable machines, it makes sense to skip installing this plugin.
-
 Val Markovic's [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) fuzzy-search code completion engine aggregades data from several auto-completion to be an all-around helpful addition to Vim. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-Plugin 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe', {
+\ 'build' : {
+\     'mac' : './install.sh --clang-completer',
+\     'unix' : './install.sh --clang-completer',
+\     'windows' : './install.sh --clang-completer',
+\     'cygwin' : './install.sh --clang-completer'
+\    }
+\ }
 ```
 
-We aren't done here yet! Follow the steps [here](https://github.com/Valloric/YouCompleteMe#installation) to satisfy the prerequisites and run the installation script. TLDR: `cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer` and wait a few minutes.
+You may consult instructions [here](https://github.com/Valloric/YouCompleteMe#installation) for additional arguments to the build script. TLDR: using the build script above works.
+
+##Interactive Command Execution in VIM
+-------------
+A prerequisite for the typescript plugin below, consult [here](https://github.com/Shougo/vimproc.vim) for details.
+To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
+
+```
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+```
 
 ##Language-Specific Plugins
 -------------
@@ -148,9 +180,9 @@ To install the plugins, add the relevant commands below to the `" TODO: Plugins 
 
 Language | Command | Configuration
 ---------|---------|--------------
-SCSS (Sassy CSS) | [`Plugin 'cakebaker/scss-syntax.vim'`](https://github.com/cakebaker/scss-syntax.vim) | (none)
-Go | [`Plugin 'fatih/vim-go'`](https://github.com/fatih/vim-go) | (none)
-
+SCSS (Sassy CSS) | [`NeoBundle 'cakebaker/scss-syntax.vim'`](https://github.com/cakebaker/scss-syntax.vim) | (none)
+TypeScript | [`NeoBundle 'Quramy/tsuquyomi'`](https://github.com/Quramy/tsuquyomi) | (none)
+Go | [`NeoBundle 'fatih/vim-go'`](https://github.com/fatih/vim-go) | (none)
 
 
 ##IndentLine
@@ -159,7 +191,7 @@ Go | [`Plugin 'fatih/vim-go'`](https://github.com/fatih/vim-go) | (none)
 One feature Vim surprisingly does not build in is indent indicators. These offer visual cues to match indent levels in code, and are common in GUI editors. Yggdroot's [IndentLine](https://github.com/Yggdroot/indentLine) does exactly what it's supposed to - replace whitespace at ident intervals with a configurable character. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-Bundle 'Yggdroot/indentLine'
+NeoBundle 'Yggdroot/indentLine'
 ```
 
 There is not much configuration to be done. I change the indent character to reduce contrast, making it a bit more subtle:
