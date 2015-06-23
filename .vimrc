@@ -1,43 +1,70 @@
-" Auto-downloading of plugins
-" ===========================
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 set nocompatible
 filetype off
 
-" Download Vundle if it isn't available
-let isVundleAvailable=0
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle.."
+" Auto-downloading of plugins
+" ===========================
+
+" Download NeoBundle if it isn't available
+let isNeoBundleAvailable=0
+let neobundle_indicator=expand('~/.vim/bundle/NeoBundle.lock')
+if !filereadable(neobundle_indicator)
+  echo "Installing NeoBundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  let isVundleAvailable=1
+  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+  let isNeoBundleAvailable=1
 endif
 
-" Initialize Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-call vundle#rc()
-Plugin 'gmarik/Vundle.vim'
+" Required for neobundle
+set runtimepath+=~/.vim/bundle/neobundle.vim
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-Bundle 'Syntastic'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'fatih/vim-go'
-Bundle 'Yggdroot/indentLine'
+" Initialize NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Initialize other plugins
+NeoBundle 'Syntastic'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'Valloric/YouCompleteMe', {
+\ 'build' : {
+\     'mac' : './install.sh --clang-completer',
+\     'unix' : './install.sh --clang-completer',
+\     'windows' : './install.sh --clang-completer',
+\     'cygwin' : './install.sh --clang-completer'
+\    }
+\ }
+NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
 " TODO: Plugins go here
 
-if isVundleAvailable == 1
+call neobundle#end()
+
+if isNeoBundleAvailable == 1
   echo "Installing Bundles and Plugins"
+  echo "! FIRST TIME WILL TAKE A WHILE"
   echo "------------------------------"
-  :BundleInstall
+  NeoBundleInstall
 endif
 
+" See if anything has been changed since Vim was last run
+NeoBundleCheck
 
-" Vim Plugins
+" Vim Plugin Configuration
 " ============
 
 " Solarized color scheme
@@ -117,7 +144,7 @@ set wrap
 set textwidth=0
 set wrapmargin=0
 set linebreak
-match ErrorMsg '\%>80v.\+'
+"match ErrorMsg '\%>80v.\+'
 
 " Strip trailing space whenever buffer is saved
 if !exists("*StripTrailingWhitespace")
@@ -153,32 +180,3 @@ set hlsearch
 " Matching ([{ }])
 set showmatch
 set mat=2
-
-" Keyboard Shortcuts
-" ------------------
-
-" Ctrl-C, Ctrl-X, Ctrl-V : Copy, Cut, Paste
-vnoremap <C-X> "+x
-vnoremap <C-C> "+y
-map <C-V> "+gP
-cmap <C-V> <C-R>+
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-
-" Use CTRL-Q to do what CTRL-V used to do;
-noremap <C-Q> <C-V>
-
-" Ctrl-A is Select all
-noremap <C-A> gggH<C-O>G
-inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-A> <C-C>gggH<C-O>G
-onoremap <C-A> <C-C>gggH<C-O>G
-snoremap <C-A> <C-C>gggH<C-O>G
-xnoremap <C-A> <C-C>ggVG
-
-" Ctrl-Z, Ctrl-Y : Undo, Redo.
-" These may be wonky in some terminals
-noremap <C-Z> u
-inoremap <C-Z> <C-O>u
-noremap <C-Y> <C-R>
-inoremap <C-Y> <C-O><C-R>
