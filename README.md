@@ -141,7 +141,6 @@ Command in `.vimrc` | What the command does
 Val Markovic's [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) fuzzy-search code completion engine aggregades data from several auto-completion to be an all-around helpful addition to Vim. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/YouCompleteMe', {
 \ 'build' : {
 \     'mac' : './install.sh --clang-completer',
@@ -169,6 +168,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
+NeoBundle 'Quramy/tsuquyomi'
 ```
 
 ##Language-Specific Plugins
