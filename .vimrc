@@ -39,7 +39,6 @@ NeoBundle 'Valloric/YouCompleteMe', {
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
@@ -49,6 +48,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
+NeoBundle 'Quramy/tsuquyomi'
 
 " TODO: Plugins go here
 
