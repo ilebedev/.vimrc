@@ -1,6 +1,8 @@
 .vimrc
 ======
 
+NOTE: You **must** have `git` installed for this to work.
+
 This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine. My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tmux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` configuration file also.
 
 This is my [.vimrc file](https://github.com/ilebedev/.vimrc/blob/master/.vimrc)
