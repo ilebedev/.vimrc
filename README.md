@@ -1,3 +1,11 @@
+Requirements
+============
+For this to work, the following must exist and be in good order on your machine:
+* `vim`, obviously.
+* `git`
+* `cmake`
+* `python-dev`
+
 .vimrc
 ======
 
@@ -90,6 +98,7 @@ Finally, select the new color scheme, and ask for low-contrast formatting charac
 colorscheme solarized
 set background=dark
 let g:solarized_visibility = "low"
+set t_Co=16
 ```
 
 To use the light `solarized` scheme, replce the last command with `set background=light`. This can also be done by typing the command in the editor, and is very useful when working in various lighting conditions.
