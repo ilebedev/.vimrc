@@ -72,6 +72,7 @@ NeoBundleCheck
 colorscheme solarized
 set background=dark
 let g:solarized_visibility = "low"
+set t_Co=16
 
 " Syntastic
 " ---------
