@@ -47,7 +47,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'mac' : 'make -f make_mac.mak',
 \     'linux' : 'make',
 \     'unix' : 'gmake',
-\    },
+\   },
 \ }
 
 " TODO: Plugins go here
@@ -180,3 +180,6 @@ set hlsearch
 " Matching ([{ }])
 set showmatch
 set mat=2
+
+" Do not hide characters
+set conceallevel=0
