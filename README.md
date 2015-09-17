@@ -1,5 +1,15 @@
+Requirements
+============
+For this to work, the following must exist and be in good order on your machine:
+* `vim`, obviously.
+* `git`
+* `cmake`
+* `python-dev`
+
 .vimrc
 ======
+
+NOTE: You **must** have `git` installed for this to work.
 
 This is the `.vimrc` file I use across all my machines. The file conveniently **auto-installs the plugin manager and all plugins**, and requires no user interaction to initialize on a new machine. My Vim looks like the screenshot below and works well over bare SSH. It works even better with `tmux` (the modern incarnation of `screen`, a persistent terminal session with some nifty UI features). I provide my `tmux` configuration file also.
 
@@ -88,6 +98,7 @@ Finally, select the new color scheme, and ask for low-contrast formatting charac
 colorscheme solarized
 set background=dark
 let g:solarized_visibility = "low"
+set t_Co=16
 ```
 
 To use the light `solarized` scheme, replce the last command with `set background=light`. This can also be done by typing the command in the editor, and is very useful when working in various lighting conditions.
@@ -141,7 +152,6 @@ Command in `.vimrc` | What the command does
 Val Markovic's [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) fuzzy-search code completion engine aggregades data from several auto-completion to be an all-around helpful addition to Vim. To install the plugin, add the following in the `" TODO: Plugins go here` section described [above](.#auto-downloading-of-plugins).
 
 ```
-NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/YouCompleteMe', {
 \ 'build' : {
 \     'mac' : './install.sh --clang-completer',
@@ -169,6 +179,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
+NeoBundle 'Quramy/tsuquyomi'
 ```
 
 ##Language-Specific Plugins
