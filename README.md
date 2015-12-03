@@ -6,6 +6,12 @@ For this to work, the following must exist and be in good order on your machine:
 * `cmake`
 * `python-dev`
 
+**NOTE**: If you use `tmux`, you may find it useful to alias `tmux` to `"TERM=xterm-256color /usr/bin/tmux"` by adding the following line to your `~/.bashrc`:
+
+```
+alias tmux="TERM=xterm-256color /usr/bin/tmux"
+```
+
 .vimrc
 ======
 
